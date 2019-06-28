@@ -5,13 +5,27 @@ class TodoItems extends Component{
    constructor(props){
        super(props);
 
+       this.state = {mark: false}
+
        this.createTasks = this.createTasks.bind(this);
+   }
+
+   markTask(){
+       if(this.mark==false){
+           this.mark = true;
+       }else{
+           this.mark = false;
+       }
    }
    
     createTasks(item){
-        return <li onClick={() => this.delete(item.key)}
+        return <div className="todo">
+        <div className="mark"></div> 
+        
+        <li className="li" onClick={() => this.delete(item.key)}
         key={item.key}>{item.text}
         </li>
+        </div>
     }
 
     delete(key){
@@ -24,7 +38,7 @@ class TodoItems extends Component{
 
         return(
             <ul className="theList">
-            <FlipMove duration={250} easing="ease-out">
+            <FlipMove className="flip" duration={250} easing="ease-out">
                 {listItems}
                 </FlipMove>
             </ul>
